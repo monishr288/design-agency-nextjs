@@ -8,6 +8,7 @@ const Hero = () => {
   const containerRef = useRef(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showWelcome, setShowWelcome] = useState(true)
+  const [mounted, setMounted] = useState(false)
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,6 +19,8 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   useEffect(() => {
+    setMounted(true)
+    
     const timer = setTimeout(() => {
       setShowWelcome(false)
     }, 5000)
@@ -43,7 +46,7 @@ const Hero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  // Predefined positions for dots - they won't change on mouse move
+  // Predefined positions for dots - using percentages instead of window
   const dotPositions = useRef(
     [...Array(40)].map(() => ({
       startX: Math.random() * 100,
@@ -80,69 +83,71 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen overflow-hidden bg-white dark:bg-[#0F172A] pt-16 lg:pt-0"
     >
-      {/* Background Moving Dots - Completely independent animation */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {dotPositions.map((pos, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1.5 h-1.5 bg-purple-500/60 dark:bg-purple-400/60 rounded-full"
-            animate={{
-              left: [`${pos.startX}%`, `${pos.endX}%`],
-              top: [`${pos.startY}%`, `${pos.endY}%`],
-            }}
-            transition={{
-              duration: pos.duration,
-              repeat: Infinity,
-              delay: pos.delay,
-              ease: "linear",
-              repeatType: "reverse"
-            }}
-          />
-        ))}
-        
-        {/* Additional floating dots */}
-        {floatPositions.map((pos, i) => (
-          <motion.div
-            key={`float-${i}`}
-            className="absolute w-2 h-2 bg-pink-500/60 dark:bg-pink-400/60 rounded-full"
-            animate={{
-              y: [0, -100, 0],
-              x: [0, pos.direction * 50, 0],
-            }}
-            transition={{
-              duration: pos.duration,
-              repeat: Infinity,
-              delay: pos.delay,
-              ease: "easeInOut"
-            }}
-            style={{
-              left: `${pos.left}%`,
-              top: `${pos.top}%`,
-            }}
-          />
-        ))}
-        
-        {/* Small sparkle dots */}
-        {sparklePositions.map((pos, i) => (
-          <motion.div
-            key={`sparkle-${i}`}
-            className="absolute w-1 h-1 bg-yellow-400/70 dark:bg-yellow-300/70 rounded-full"
-            animate={{
-              scale: [0, 1.5, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: pos.duration,
-              repeat: Infinity,
-              delay: pos.delay,
-            }}
-            style={{
-              left: `${pos.left}%`,
-              top: `${pos.top}%`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Background Moving Dots - Only render on client */}
+      {mounted && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {dotPositions.map((pos, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1.5 h-1.5 bg-purple-500/60 dark:bg-purple-400/60 rounded-full"
+              animate={{
+                left: [`${pos.startX}%`, `${pos.endX}%`],
+                top: [`${pos.startY}%`, `${pos.endY}%`],
+              }}
+              transition={{
+                duration: pos.duration,
+                repeat: Infinity,
+                delay: pos.delay,
+                ease: "linear",
+                repeatType: "reverse"
+              }}
+            />
+          ))}
+          
+          {/* Additional floating dots */}
+          {floatPositions.map((pos, i) => (
+            <motion.div
+              key={`float-${i}`}
+              className="absolute w-2 h-2 bg-pink-500/60 dark:bg-pink-400/60 rounded-full"
+              animate={{
+                y: [0, -100, 0],
+                x: [0, pos.direction * 50, 0],
+              }}
+              transition={{
+                duration: pos.duration,
+                repeat: Infinity,
+                delay: pos.delay,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${pos.left}%`,
+                top: `${pos.top}%`,
+              }}
+            />
+          ))}
+          
+          {/* Small sparkle dots */}
+          {sparklePositions.map((pos, i) => (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-1 h-1 bg-yellow-400/70 dark:bg-yellow-300/70 rounded-full"
+              animate={{
+                scale: [0, 1.5, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: pos.duration,
+                repeat: Infinity,
+                delay: pos.delay,
+              }}
+              style={{
+                left: `${pos.left}%`,
+                top: `${pos.top}%`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Gradient Orbs - These move with cursor */}
       <motion.div 
@@ -370,7 +375,7 @@ const Hero = () => {
                 >
                   <motion.div
                     style={{
-                      transform: `rotate(${i * 45}deg) translateX(${window.innerWidth < 640 ? '70px' : '160px'})`,
+                      transform: `rotate(${i * 45}deg) translateX(160px)`,
                     }}
                   />
                 </motion.div>
