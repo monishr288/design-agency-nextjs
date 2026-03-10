@@ -33,7 +33,7 @@ A modern, interactive design agency homepage built with Next.js 14, featuring st
 
 ## 🚀 Live Demo
 
-🔗 [View Live Demo](https://design-agency-homepage-neon.vercel.app)
+🔗 [View Live Demo](https://design-agency-nextjs-eight.vercel.app/)
 
 ## 🛠️ Tech Stack
 
