@@ -81,7 +81,7 @@ const Hero = () => {
     <section 
       ref={containerRef}
       id="home" 
-      className="relative min-h-screen overflow-hidden bg-white dark:bg-[#0F172A] pt-16 lg:pt-0"
+      className="relative min-h-screen overflow-hidden bg-white dark:bg-[#0F172A] pt-24 md:pt-28 lg:pt-32"
     >
       {/* Background Moving Dots - Only render on client */}
       {mounted && (
@@ -152,11 +152,11 @@ const Hero = () => {
       {/* Gradient Orbs - These move with cursor */}
       <motion.div 
         style={{ x: mousePosition.x, y: mousePosition.y }}
-        className="absolute top-20 left-20 w-96 h-96 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-3xl pointer-events-none"
+        className="absolute top-40 left-20 w-96 h-96 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-3xl pointer-events-none"
       />
       <motion.div 
         style={{ x: -mousePosition.x, y: -mousePosition.y }}
-        className="absolute bottom-20 right-20 w-96 h-96 bg-pink-600/10 dark:bg-pink-600/20 rounded-full blur-3xl pointer-events-none"
+        className="absolute bottom-40 right-20 w-96 h-96 bg-pink-600/10 dark:bg-pink-600/20 rounded-full blur-3xl pointer-events-none"
       />
 
       {/* Welcome Message */}
@@ -164,7 +164,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: showWelcome ? 1 : 0, y: showWelcome ? 0 : -50 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
+        className="fixed top-28 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
       >
         <motion.div
           animate={{ rotate: 360 }}
@@ -182,7 +182,7 @@ const Hero = () => {
       </motion.div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -195,35 +195,35 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 px-4 py-2 rounded-full mb-8 border border-gray-200 dark:border-gray-700 mx-auto lg:mx-0"
+              className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 px-4 py-2 rounded-full mb-6 border border-gray-200 dark:border-gray-700 mx-auto lg:mx-0"
             >
               <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400" />
               <span className="text-sm text-gray-700 dark:text-gray-300">Next.js 14 • React 18 • Tailwind</span>
             </motion.div>
 
             {/* Title */}
-            <h1 className="text-6xl md:text-7xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="text-gray-900 dark:text-white">Create</span>
               <br />
-              <span className="animated-gradient">
+              <span className="animated-gradient text-5xl md:text-6xl lg:text-7xl">
                 Digital Magic
               </span>
               <br />
               <span className="text-gray-900 dark:text-white">With Next.js</span>
             </h1>
 
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto lg:mx-0">
               Building the future of web with modern technologies. 
               Fast, responsive, and beautiful experiences.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-12 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-4 mb-10 justify-center lg:justify-start">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection('services')}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all"
+                className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all text-sm md:text-base"
               >
                 Start Creating
               </motion.button>
@@ -232,14 +232,14 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection('portfolio')}
-                className="px-8 py-4 bg-white dark:bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-white/10 transition-all"
+                className="px-6 md:px-8 py-3 md:py-4 bg-white dark:bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-white/10 transition-all text-sm md:text-base"
               >
                 View Portfolio
               </motion.button>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0">
+            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-md mx-auto lg:mx-0">
               {[
                 { icon: Zap, value: '50+', label: 'Projects', color: 'from-yellow-400 to-orange-400' },
                 { icon: Shield, value: '100%', label: 'Satisfaction', color: 'from-green-400 to-emerald-400' },
@@ -252,11 +252,11 @@ const Hero = () => {
                   transition={{ delay: 0.3 + i * 0.1 }}
                   className="text-center"
                 >
-                  <div className={`w-12 h-12 mx-auto mb-2 rounded-lg bg-gradient-to-r ${stat.color} p-2.5`}>
+                  <div className={`w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 rounded-lg bg-gradient-to-r ${stat.color} p-2 md:p-2.5`}>
                     <stat.icon className="w-full h-full text-white" />
                   </div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
+                  <div className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                  <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -267,20 +267,20 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[300px] sm:h-[350px] md:h-[400px] lg:h-[600px] mt-4 lg:mt-0 order-1 lg:order-2"
+            className="relative h-[280px] sm:h-[320px] md:h-[380px] lg:h-[550px] mt-4 lg:mt-0 order-1 lg:order-2"
           >
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Rotating Rings */}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full border-2 border-dashed border-purple-400/50 dark:border-purple-400/30"
+                className="absolute w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2 border-dashed border-purple-400/50 dark:border-purple-400/30"
               />
               
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full border-2 border-dotted border-pink-400/50 dark:border-pink-400/30"
+                className="absolute w-36 h-36 sm:w-48 sm:h-48 md:w-60 md:h-60 lg:w-80 lg:h-80 rounded-full border-2 border-dotted border-pink-400/50 dark:border-pink-400/30"
               />
 
               {/* Main Logo Container */}
@@ -294,7 +294,7 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-64 lg:h-64"
+                className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-64 lg:h-64"
               >
                 {/* Glowing Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur-2xl lg:blur-3xl opacity-20 dark:opacity-30 animate-pulse" />
@@ -317,7 +317,7 @@ const Hero = () => {
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="text-8xl font-black bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-2"
+                      className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-1 lg:mb-2"
                     >
                       DS
                     </motion.div>
@@ -325,9 +325,9 @@ const Hero = () => {
                       initial={{ width: 0 }}
                       animate={{ width: '100%' }}
                       transition={{ delay: 1, duration: 1 }}
-                      className="h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 mx-auto mb-2"
+                      className="h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 mx-auto mb-1 lg:mb-2"
                     />
-                    <p className="text-gray-600 dark:text-gray-400 text-sm tracking-widest">DESIGN STUDIO</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-[8px] sm:text-xs lg:text-sm tracking-widest">DESIGN STUDIO</p>
                   </div>
                 </div>
               </motion.div>
@@ -336,10 +336,10 @@ const Hero = () => {
               {['⚛️', '▲', '🎨', '💻', '📱', '🚀'].map((emoji, i) => (
                 <motion.div
                   key={i}
-                  className="absolute text-2xl"
+                  className="absolute text-xl sm:text-2xl lg:text-3xl"
                   animate={{
-                    y: [0, -20, 0],
-                    x: [0, i % 2 === 0 ? 10 : -10, 0],
+                    y: [0, -15, 0],
+                    x: [0, i % 2 === 0 ? 8 : -8, 0],
                   }}
                   transition={{
                     duration: 3,
@@ -347,19 +347,19 @@ const Hero = () => {
                     repeat: Infinity,
                   }}
                   style={{
-                    top: `${20 + i * 12}%`,
-                    left: i % 2 === 0 ? '5%' : '85%',
+                    top: `${15 + i * 10}%`,
+                    left: i % 2 === 0 ? '8%' : '82%',
                   }}
                 >
                   {emoji}
                 </motion.div>
               ))}
 
-              {/* Orbiting Dots */}
+              {/* Orbiting Dots - Responsive */}
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 bg-purple-500 dark:bg-purple-400 rounded-full"
+                  className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 dark:bg-purple-400 rounded-full"
                   animate={{
                     rotate: 360,
                   }}
@@ -373,11 +373,13 @@ const Hero = () => {
                     left: '50%',
                   }}
                 >
-                  <motion.div
-                    style={{
-                      transform: `rotate(${i * 45}deg) translateX(160px)`,
-                    }}
-                  />
+                  <div style={{
+                    transform: `rotate(${i * 45}deg) translateX(${
+                      typeof window !== 'undefined' && window.innerWidth < 480 ? '50px' : 
+                      typeof window !== 'undefined' && window.innerWidth < 768 ? '65px' : 
+                      typeof window !== 'undefined' && window.innerWidth < 1024 ? '90px' : '140px'
+                    })`,
+                  }} />
                 </motion.div>
               ))}
             </div>
