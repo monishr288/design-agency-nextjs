@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Code, Palette, TrendingUp, Camera, Sparkles, Zap } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const services = [
   {
@@ -37,6 +37,26 @@ const services = [
 
 const Services = () => {
   const [activeIndex, setActiveIndex] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  const handleCardClick = (index) => {
+    if (isMobile) {
+      // On mobile, toggle glow on click
+      setActiveIndex(activeIndex === index ? null : index)
+    }
+  }
 
   return (
     <section id="services" className="py-32 bg-gray-50 dark:bg-[#0F172A] relative overflow-hidden">
@@ -69,11 +89,12 @@ const Services = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              onHoverStart={() => setActiveIndex(index)}
-              onHoverEnd={() => setActiveIndex(null)}
-              className="group relative"
+              onHoverStart={() => !isMobile && setActiveIndex(index)}
+              onHoverEnd={() => !isMobile && setActiveIndex(null)}
+              onClick={() => handleCardClick(index)}
+              className="group relative cursor-pointer"
             >
-              {/* Glow Effect - This creates the glow on hover */}
+              {/* Glow Effect - Visible on hover (desktop) or click (mobile) */}
               <motion.div
                 animate={{
                   opacity: activeIndex === index ? 0.3 : 0,
@@ -110,6 +131,13 @@ const Services = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* Tap indicator for mobile */}
+                {isMobile && activeIndex !== index && (
+                  <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
+                    Tap to glow
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
