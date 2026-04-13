@@ -234,7 +234,7 @@ const Hero = () => {
                 onClick={() => scrollToSection('portfolio')}
                 className="px-6 md:px-8 py-3 md:py-4 bg-white dark:bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-white/10 transition-all text-sm md:text-base"
               >
-                View Portfolio
+                View Projects
               </motion.button>
             </div>
 
